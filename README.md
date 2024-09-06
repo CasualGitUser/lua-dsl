@@ -10,8 +10,8 @@ This demonstrates that braceless functions can be used to create domain specific
 
 ## Examples
 ### Defining object types
-To define a object, use the syntax: object "object_name" {default values}.
-This also creates what is called a "group". In this case its the "person" group
+To define a object, use the syntax: object "object_name" {default values}. <br>
+This also creates what is called a "group". In this case its the "person" group. <br>
 ```lua
 object "person" {
   name = "",
@@ -29,10 +29,10 @@ object "robot" {
 }
 ```
 ### Creating new instances
-To create a instance, use the syntax: local varName = new "object_name" {data}.
-The default data that the object (in this case "person") defines acts as a metatable for the new instance.
-There are no constructors. if you want to add properties, methods etc. to an object (or use default values), just add them in the instance or dont write them.
-The instances that are created are part of the group (in this case the "person" group).
+To create a instance, use the syntax: local varName = new "object_name" {data}. <br>
+The default data that the object (in this case "person") defines acts as a metatable for the new instance. <br>
+There are no constructors. if you want to add properties, methods etc. to an object (or use default values), just add them in the instance or dont write them. <br>
+The instances that are created are part of the group (in this case the "person" group). <br>
 ```lua
 local bob = new "person" {
   name = "bob",
@@ -53,10 +53,10 @@ local bobette = new "person" {
 }
 ```
 ### Defining groups using predicates
-This creates a new group.
-Every entity that is created after it is tested with this predicate. If it returns true, it adds the object to the group "namedEntity". If it returns false, it doesn't.
-Groups should be defined before any instance is created, as all instances created previously wont be tested for this (and therefore may qualify for the group, but arent in it).
-For example, a "person" and a "pet" may both have a name, but are different classes (and there in different groups), so you can use this instead to create a new group with both of them in it if you need to iterate over all objects with a name property.
+This creates a new group. <br>
+Every entity that is created after it is tested with this predicate. If it returns true, it adds the object to the group "namedEntity". If it returns false, it doesn't. <br>
+Groups should be defined before any instance is created, as all instances created previously wont be tested for this (and therefore may qualify for the group, but arent in it). <br>
+For example, a "person" and a "pet" may both have a name, but are different classes (and there in different groups), so you can use this instead to create a new group with both of them in it if you need to iterate over all objects with a name property. <br>
 ```lua
 group "namedEntity" (function(object)
   if object.name then
@@ -67,30 +67,30 @@ group "namedEntity" (function(object)
 end)
 ```
 ### Using for_each to iterate over a group
-To iterate over a syntax, use the syntax: for_each "group" (function(object_in_group) end).
+To iterate over a syntax, use the syntax: for_each "group" (function(object_in_group) end). <br>
 ```lua
 for_each "namedEntity" (function(namedEntity)
   print("entity name: ", namedEntity.name)
 end)
 ```
 ### Declaring events
-To declare events, use the syntax: event "event_name".
-Note that a event can carry data, but it is not specified in its declaration. The data that is sent is defined in its "dispatch".
-Each group now has a "aged up" event.
+To declare events, use the syntax: event "event_name". <br>
+Note that a event can carry data, but it is not specified in its declaration. The data that is sent is defined in its "dispatch". <br>
+Each group now has a "aged up" event. <br>
 ```lua
 event "aged up"
 ```
 ### Reacting to events
-To react to events, use the syntax: when "group" "event" (function(event_data) end).
-This runs a function when the event fired in one of the members of the specified group.
+To react to events, use the syntax: when "group" "event" (function(event_data) end). <br>
+This runs a function when the event fired in one of the members of the specified group. <br>
 ```lua
 when "person" "aged up" (function(data)
   print(data.name, " aged up)
 end)
 ```
 ### Dispatching events
-To dispatch events, use the syntax: dispatch "group" "event" {event_data}.
-In this example, this for_each block ages up every person and triggers the aged up event. The event carries the name, the previous age and the new age as data.
+To dispatch events, use the syntax: dispatch "group" "event" {event_data}. <br>
+In this example, this for_each block ages up every person and triggers the aged up event. The event carries the name, the previous age and the new age as data. <br>
 ```lua
 for_each "person" (function(person)
   person.age = person.age + 1
