@@ -10,7 +10,7 @@ This demonstrates that braceless functions can be used to create domain specific
 
 ## Examples
 ### Defining object types
-To define a object, use the syntax: object "object_name" {default values}. <br>
+To define a object, use the syntax: ```lua object "object_name" {default values}. ``` <br>
 This also creates what is called a "group". In this case its the "person" group. <br>
 ```lua
 object "person" {
