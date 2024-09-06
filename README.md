@@ -10,7 +10,7 @@ This demonstrates that braceless functions can be used to create domain specific
 
 ## Examples
 ### Defining object types
-To define a object, use the syntax: ```object "object_name" {default values}. ``` <br>
+To define a object, use the syntax: ```object "object_name" {default values} ``` <br>
 This also creates what is called a "group". In this case its the "person" group. <br>
 ```lua
 object "person" {
@@ -29,7 +29,7 @@ object "robot" {
 }
 ```
 ### Creating new instances
-To create a instance, use the syntax: local varName = new "object_name" {data}. <br>
+To create a instance, use the syntax: ```local varName = new "object_name" {data}``` <br>
 The default data that the object (in this case "person") defines acts as a metatable for the new instance. <br>
 There are no constructors. if you want to add properties, methods etc. to an object (or use default values), just add them in the instance or dont write them. <br>
 The instances that are created are part of the group (in this case the "person" group). <br>
@@ -67,21 +67,21 @@ group "namedEntity" (function(object)
 end)
 ```
 ### Using for_each to iterate over a group
-To iterate over a syntax, use the syntax: for_each "group" (function(object_in_group) end). <br>
+To iterate over a syntax, use the syntax: ```for_each "group" (function(object_in_group) end)``` <br>
 ```lua
 for_each "namedEntity" (function(namedEntity)
   print("entity name: ", namedEntity.name)
 end)
 ```
 ### Declaring events
-To declare events, use the syntax: event "event_name". <br>
+To declare events, use the syntax: ```event "event_name"``` <br>
 Note that a event can carry data, but it is not specified in its declaration. The data that is sent is defined in its "dispatch". <br>
 Each group now has a "aged up" event. <br>
 ```lua
 event "aged up"
 ```
 ### Reacting to events
-To react to events, use the syntax: when "group" "event" (function(event_data) end). <br>
+To react to events, use the syntax: ```when "group" "event" (function(event_data) end)``` <br>
 This runs a function when the event fired in one of the members of the specified group. <br>
 ```lua
 when "person" "aged up" (function(data)
@@ -89,7 +89,7 @@ when "person" "aged up" (function(data)
 end)
 ```
 ### Dispatching events
-To dispatch events, use the syntax: dispatch "group" "event" {event_data}. <br>
+To dispatch events, use the syntax: ```dispatch "group" "event" {event_data}``` <br>
 In this example, this for_each block ages up every person and triggers the aged up event. The event carries the name, the previous age and the new age as data. <br>
 ```lua
 for_each "person" (function(person)
