@@ -1,5 +1,5 @@
 # A domain specific language written in lua
-This demonstrates that braceless functions can be used to create domain specific languages with a non-lua-ish syntax.
+This demonstrates that braceless functions and currying can be used to create domain specific languages with a non-lua-ish syntax.
 
 ## Features
 1. Create objects as "blueprints" for instances
